@@ -18,15 +18,22 @@ jobs:
         libseccomp-dev libsoup2.4-dev libcurl4-openssl-dev libsystemd-dev libxml2-utils libgpgme11-dev gobject-introspection \
         libgirepository1.0-dev libappstream-dev libdconf-dev clang e2fslibs-dev
         sudo apt-get install libappstream-glib8 libappstream-glib-dev
-    - name: Check out flatpak
-      run: git clone -b flatpak-1.12.x https://github.com/flatpak/flatpak/ --recurse-submodules
-    - name: configure
-      run: |
+        
+    - name: Build Flatpak
+      run: | 
+        git clone -b flatpak-1.12.x https://github.com/flatpak/flatpak/ --recurse-submodules
         cd flatpak
         ./autogen.sh
         ./configure
-    - name: Build flatpak
-      run: |
         cd flatpak
         make -j $(getconf _NPROCESSORS_ONLN)
         sudo make install
+        
+    - name: Build Flatpak-builder
+      run: |
+        sudo apt-get install -y meson
+        git clone https://github.com/flatpak/flatpak-builder
+        cd flatpak-builder
+        meson setup _build
+        meson install -C _build
+        
