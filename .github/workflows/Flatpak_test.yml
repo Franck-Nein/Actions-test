@@ -27,5 +27,6 @@ jobs:
         ./configure
     - name: Build flatpak
       run: |
+        cd flatpak
         make -j $(getconf _NPROCESSORS_ONLN)
         sudo make install
