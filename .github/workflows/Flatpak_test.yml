@@ -17,6 +17,7 @@ jobs:
         libjson-glib-dev shared-mime-info desktop-file-utils libpolkit-agent-1-dev libpolkit-gobject-1-dev \
         libseccomp-dev libsoup2.4-dev libcurl4-openssl-dev libsystemd-dev libxml2-utils libgpgme11-dev gobject-introspection \
         libgirepository1.0-dev libappstream-dev libdconf-dev clang e2fslibs-dev
+        sudo apt-get install libappstream-glib8
     - name: Check out flatpak
       run: git clone -b flatpak-1.12.x https://github.com/flatpak/flatpak/ --recurse-submodules
     - name: configure
