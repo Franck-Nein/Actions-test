@@ -25,7 +25,6 @@ jobs:
         cd flatpak
         ./autogen.sh
         ./configure
-        cd flatpak
         make -j $(getconf _NPROCESSORS_ONLN)
         sudo make install
         
