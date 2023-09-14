@@ -18,9 +18,10 @@ jobs:
         libseccomp-dev libsoup2.4-dev libcurl4-openssl-dev libsystemd-dev libxml2-utils libgpgme11-dev gobject-introspection \
         libgirepository1.0-dev libappstream-dev libdconf-dev clang e2fslibs-dev
     - name: Check out flatpak
-      run: git clone -b flatpak-1.12.x git@github.com:flatpak/flatpak.git --recurse-submodules .
+      run: git clone -b flatpak-1.12.x git@github.com:flatpak/flatpak.git --recurse-submodules
     - name: configure
       run: |
+        cd flatpak
         ./autogen.sh
         ./configure
     - name: Build flatpak
