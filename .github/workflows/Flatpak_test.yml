@@ -30,10 +30,6 @@ jobs:
         
     - name: Build Flatpak-builder
       run: |
-        which meson && meson --version && sudo apt purge meson -y
-        sudo apt install python3 python3-pip
-        wget -q -O get-pip.py https://github.com/pypa/get-pip/raw/master/get-pip.py
-        python3 get-pip.py --upgrade --disable-pip-version-check --no-cache-dir
         sudo pip3 install meson
         sudo ln -s /usr/local/bin/meson /usr/bin/meson
         git clone https://github.com/flatpak/flatpak-builder
