@@ -30,6 +30,7 @@ jobs:
         
     - name: Build Flatpak-builder
       run: |
+        sudo apt-get install debugedit -y
         sudo pip3 install meson
         sudo ln -s /usr/local/bin/meson /usr/bin/meson
         git clone https://github.com/flatpak/flatpak-builder
