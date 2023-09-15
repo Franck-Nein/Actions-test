@@ -30,11 +30,16 @@ jobs:
         
     - name: Build Flatpak-builder
       run: |
-        sudo apt-get install debugedit -y
-        sudo pip3 install meson
-        sudo ln -s /usr/local/bin/meson /usr/bin/meson
+        sudo apt-get install -y libglib2.0 attr automake appstream-compose gettext autopoint bison dbus gtk-doc-tools \
+        libfuse-dev ostree libostree-dev libarchive-dev libcap-dev libattr1-dev libdw-dev libelf-dev \
+        libjson-glib-dev shared-mime-info desktop-file-utils libpolkit-agent-1-dev libpolkit-gobject-1-dev \
+        libseccomp-dev libsystemd-dev libxml2-utils libgpgme11-dev gobject-introspection \
+        libgirepository1.0-dev libappstream-dev libdconf-dev clang socat flatpak \
+        libcurl4-gnutls-dev libflatpak-dev libyaml-dev elfutils git patch unzip
+        
         git clone https://github.com/flatpak/flatpak-builder
         cd flatpak-builder
-        meson setup _build
-        meson install -C _build
+        ./autogen.sh --disable-introspection
+        make -j $(getconf _NPROCESSORS_ONLN)
+
         
